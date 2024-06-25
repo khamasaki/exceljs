@@ -1377,6 +1377,11 @@ export interface Worksheet {
 	addConditionalFormatting(cf: ConditionalFormattingOptions): void;
 
 	/**
+	 * Add a new pivot table and return a reference to it
+	 */
+	addPivotTable(tableProperties: PivotTableProperties): Table;
+
+        /**
 	 * delete conditionalFormattingOptions
 	 */
 	removeConditionalFormatting(filter: any): void;
@@ -1901,6 +1906,50 @@ export interface Table extends Required<TableProperties> {
 	 * Remove a column with data
 	 */
 	removeColumns: (colIndex: number, count: number) => void
+}
+
+export interface PivotTableStyleProperties {
+	/**
+	 * The colour theme of the table
+	 * @default 'PivotStyleMedium2'
+	 */
+	theme?: 'PivotStyleDark1' | 'PivotStyleDark10' | 'PivotStyleDark11' | 'PivotStyleDark2' | 'PivotStyleDark3' | 'PivotStyleDark4' | 'PivotStyleDark5' | 'PivotStyleDark6' | 'PivotStyleDark7' | 'PivotStyleDark8' | 'PivotStyleDark9' | 'PivotStyleLight1' | 'PivotStyleLight10' | 'PivotStyleLight11' | 'PivotStyleLight12' | 'PivotStyleLight13' | 'PivotStyleLight14' | 'PivotStyleLight15' | 'PivotStyleLight16' | 'PivotStyleLight17' | 'PivotStyleLight18' | 'PivotStyleLight19' | 'PivotStyleLight2' | 'PivotStyleLight20' | 'PivotStyleLight21' | 'PivotStyleLight3' | 'PivotStyleLight4' | 'PivotStyleLight5' | 'PivotStyleLight6' | 'PivotStyleLight7' | 'PivotStyleLight8' | 'PivotStyleLight9' | 'PivotStyleMedium1' | 'PivotStyleMedium10' | 'PivotStyleMedium11' | 'PivotStyleMedium12' | 'PivotStyleMedium13' | 'PivotStyleMedium14' | 'PivotStyleMedium15' | 'PivotStyleMedium16' | 'PivotStyleMedium17' | 'PivotStyleMedium18' | 'PivotStyleMedium19' | 'PivotStyleMedium2' | 'PivotStyleMedium20' | 'PivotStyleMedium21' | 'PivotStyleMedium22' | 'PivotStyleMedium23' | 'PivotStyleMedium24' | 'PivotStyleMedium25' | 'PivotStyleMedium26' | 'PivotStyleMedium27' | 'PivotStyleMedium28' | 'PivotStyleMedium3' | 'PivotStyleMedium4' | 'PivotStyleMedium5' | 'PivotStyleMedium6' | 'PivotStyleMedium7' | 'PivotStyleMedium8' | 'PivotStyleMedium9';
+}
+
+export interface PivotTableProperties {
+	/**
+	 * The name of the table
+	 */
+	name: string;
+	/**
+	 * Top left cell of the table
+	 */
+	ref: string;
+	/**
+	 * Table with source data
+	 */
+	sourceTable: Table;
+	/**
+	 * Caption row header
+	 */
+	rowHeaderCaption: string;
+	/**
+	 * Caption row data
+	 */
+	dataCaption: string;
+	/**
+	 * Extra style properties
+	 * @default {}
+	 */
+	style?: PivotTableStyleProperties;
+	/**
+	 * Rows of data
+	 */
+	rows: any[]
+	/**
+	 * Value specifications
+	 */
+	values: any[]
 }
 
 export namespace config {
